@@ -1,3 +1,4 @@
+print("inside java")
 local jdtls = require('jdtls')
 
 -- File types that signify a Java project's root directory. This will be

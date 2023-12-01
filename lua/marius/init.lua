@@ -1,7 +1,10 @@
 require("marius.remap")
 require("marius.set")
 require("marius.util")
-
+require("marius.dap.rust")
+require("marius.dap.go")
+require("marius.whichkey")
+print("inside init.lua from marius before require")
 --
 --local augroup = vim.api.nvim_create_augroup
 --local ThePrimeagenGroup = augroup('ThePrimeagen', {})

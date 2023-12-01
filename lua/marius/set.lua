@@ -1,3 +1,8 @@
+print("inside set.lua from marius")
+vim.opt.clipboard="unnamedplus"
+-- a lot of apps use this, like github prob remove this and try again.....
+--vim.opt.scl="no"
+
 vim.opt.guicursor = "a:blinkon100"
 
 vim.opt.nu = true

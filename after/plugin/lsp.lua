@@ -1,54 +1,39 @@
-local lsp = require('lsp-zero').preset({})
+print("inside lsp.lua")
+local lsp_zero = require('lsp-zero')
 
-lsp.preset("recommended")
-
-lsp.ensure_installed({
-	'tsserver',
-	'rust_analyzer',
-    'angularls',
-    'ansiblels',
-    'jdtls',
-    'golangci_lint_ls'
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {'tsserver', 'rust_analyzer', 'angularls','ansiblels','jdtls','golangci_lint_ls'},
+  handlers = {
+    lsp_zero.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
 })
-
--- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
 
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+
+cmp.setup({
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'nvim_lua'},
+  },
+  formatting = lsp_zero.cmp_format(),
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = nil,
+    ['<S-Tab>'] = nil,
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+  }),
 })
 
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = '',
-        warn = '',
-        hint = '',
-        info = ''
-    }
-})
 
 --lsp.on_attach(function(client, bufnr)
 --  local opts = {buffer = bufnr, remap = false}
@@ -65,26 +50,26 @@ lsp.set_preferences({
 --  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 --
 --
-----  nnoremap('gD', vim.lsp.buf.declaration, bufopts, "Go to declaration")
-----  nnoremap('gi', vim.lsp.buf.implementation, bufopts, "Go to implementation")
-----  nnoremap('K', vim.lsp.buf.hover, bufopts, "Hover text")
-----  nnoremap('<C-k>', vim.lsp.buf.signature_help, bufopts, "Show signature")
-----  nnoremap('<space>wa', vim.lsp.buf.add_workspace_folder, bufopts, "Add workspace folder")
-----  nnoremap('<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts, "Remove workspace folder")
-----  nnoremap('<space>wl', function()
-----    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-----  end, bufopts, "List workspace folders")
-----  nnoremap('<space>D', vim.lsp.buf.type_definition, bufopts, "Go to type definition")
-----  nnoremap('<space>rn', vim.lsp.buf.rename, bufopts, "Rename")
-----  nnoremap('<space>ca', vim.lsp.buf.code_action, bufopts, "Code actions")
-----  vim.keymap.set('v', "<space>ca", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
-----    { noremap=true, silent=true, buffer=bufnr, desc = "Code actions" })
-----  nnoremap('<space>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
+--  nnoremap('gD', vim.lsp.buf.declaration, bufopts, "Go to declaration")
+--  nnoremap('gi', vim.lsp.buf.implementation, bufopts, "Go to implementation")
+--  nnoremap('K', vim.lsp.buf.hover, bufopts, "Hover text")
+--  nnoremap('<C-k>', vim.lsp.buf.signature_help, bufopts, "Show signature")
+--  nnoremap('<space>wa', vim.lsp.buf.add_workspace_folder, bufopts, "Add workspace folder")
+--  nnoremap('<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts, "Remove workspace folder")
+--  nnoremap('<space>wl', function()
+--    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--  end, bufopts, "List workspace folders")
+--  nnoremap('<space>D', vim.lsp.buf.type_definition, bufopts, "Go to type definition")
+--  nnoremap('<space>rn', vim.lsp.buf.rename, bufopts, "Rename")
+--  nnoremap('<space>ca', vim.lsp.buf.code_action, bufopts, "Code actions")
+--  vim.keymap.set('v', "<space>ca", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
+--    { noremap=true, silent=true, buffer=bufnr, desc = "Code actions" })
+--  nnoremap('<space>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
 --
 --end)
 --
 --lsp.setup()
-
+--
 
 vim.diagnostic.config({
     virtual_text = true

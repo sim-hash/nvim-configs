@@ -1,3 +1,4 @@
+print("inside set.lua from marius")
 local M = {}
 
 function M.remap(mode, rhs, lhs, bufopts, desc)

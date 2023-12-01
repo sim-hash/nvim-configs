@@ -38,5 +38,5 @@ vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 --})
 
 -- require('telescope').load_extension('fzf')
-require('telescope').load_extension('ui-select')
+-- require('telescope').load_extension('ui-select')
 require('telescope').load_extension('dap')

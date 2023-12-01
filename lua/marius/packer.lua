@@ -1,15 +1,17 @@
 --- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
+print("Inside packer")
 return require('packer').startup(function(use)
+
+    print("Inside packer")
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use {'nvim-telescope/telescope-ui-select.nvim' }
+--  use {'nvim-telescope/telescope-ui-select.nvim' }
   use {'nvim-telescope/telescope-dap.nvim' }
 
   use({
@@ -43,7 +45,7 @@ return require('packer').startup(function(use)
 
   use {
       'VonHeikemen/lsp-zero.nvim',
-      branch = 'v1.x',
+      branch = 'v3.x',
       requires = {
           -- LSP Support
           {'neovim/nvim-lspconfig'},             -- Required
@@ -76,7 +78,8 @@ use {
     config = function()
         vim.o.timeout = true
         vim.o.timeoutlen = 300
-        require("which-key").setup {
+        require("marius.whichkey").setup {
+            print("yolo marius is here")
             -- your configuration comes here
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
@@ -87,11 +90,35 @@ use("folke/zen-mode.nvim")
 use("github/copilot.vim") 
 use("eandrju/cellular-automaton.nvim")
 use("laytan/cloak.nvim")
-use("mfussenegger/nvim-dap")
+
+-- Debugging
+use {
+    "mfussenegger/nvim-dap",
+    opt = true,
+    module = { "dap" },
+    requires = {
+    --    { "theHamsta/nvim-dap-virtual-text", module = { "nvim-dap-virtual-text" } },
+    { "rcarriga/nvim-dap-ui", module = { "dapui" } },
+    --    { "mfussenegger/nvim-dap-python", module = { "dap-python" } },
+        "nvim-telescope/telescope-dap.nvim",
+    --   { "leoluz/nvim-dap-go", module = "dap-go" },
+    --  { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+    --  { "mxsdev/nvim-dap-vscode-js", module = { "dap-vscode-js" } },
+    },
+    config = function()
+        require("marius.dap").setup()
+    end,
+    disable = false,
+}
+
+--use {
+--    "rcarriga/nvim-dap-ui", requires = {
+--        "mfussenegger/nvim-dap"
+--    } 
+--}
 use("mfussenegger/nvim-jdtls")
 use("folke/neodev.nvim")
-use{"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 require("neodev").setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true }
+    library = { plugins = { "nvim-dap-ui" }, types = true }
 })
 end)
