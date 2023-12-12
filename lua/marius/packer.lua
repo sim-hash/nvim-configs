@@ -1,5 +1,4 @@
 --- This file can be loaded by calling `lua require('plugins')` from your init.vim
-print("Inside packer")
 return require('packer').startup(function(use)
 
     print("Inside packer")

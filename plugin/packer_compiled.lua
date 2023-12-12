@@ -287,14 +287,14 @@ end
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\nª\1\0\0\6\0\t\1\0196\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0)\1,\1=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0004\2\3\0006\3\a\0'\5\b\0B\3\2\0?\3\0\0B\0\2\1K\0\1\0\24yolo marius is here\nprint\nsetup\20marius.whichkey\frequire\15timeoutlen\ftimeout\6o\bvim\3€€À™\4\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
--- Config for: gruvbox
-time([[Config for gruvbox]], true)
-try_loadstring("\27LJ\2\n–\1\0\0\3\0\5\0\r6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\0016\0\0\0009\0\1\0'\2\4\0B\0\2\1K\0\1\0\24colorscheme gruvbox'let g:gruvbox_contrast_dark=\"soft\" let g:nvcode_termcolors=256\bcmd\bvim\0", "config", "gruvbox")
-time([[Config for gruvbox]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\nC\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\nicons\1\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
+-- Config for: gruvbox
+time([[Config for gruvbox]], true)
+try_loadstring("\27LJ\2\n–\1\0\0\3\0\5\0\r6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\0016\0\0\0009\0\1\0'\2\4\0B\0\2\1K\0\1\0\24colorscheme gruvbox'let g:gruvbox_contrast_dark=\"soft\" let g:nvcode_termcolors=256\bcmd\bvim\0", "config", "gruvbox")
+time([[Config for gruvbox]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
