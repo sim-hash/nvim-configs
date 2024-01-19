@@ -19,7 +19,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'angularls','ansiblels','jdtls','golangci_lint_ls','gopls'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'angularls','ansiblels','golangci_lint_ls','gopls'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -45,11 +45,11 @@ cmp.setup({
     ['<S-Tab>'] = nil,
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<Enter>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
   }),
 })
-
+-- TO:DO after you press gd how to goback to previous, CTRL - O or CTRL - I
 
 --lsp.on_attach(function(client, bufnr)
 --  local opts = {buffer = bufnr, remap = false}
