@@ -33,3 +33,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
+
+--syntax on               " enable syntax highlighting
+--set termguicolors       " enable true colors
+--set t_Co=256            " needed to work in the Ubuntu terminal
