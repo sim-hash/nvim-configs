@@ -32,6 +32,8 @@ vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.statusline = '%F'
+--set statusline+=%F
 
 
 --syntax on               " enable syntax highlighting
