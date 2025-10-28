@@ -64,8 +64,8 @@ local function configure_exts()
       },
       {
         elements = {
-          { id = "repl", size = 0.45 },
-          { id = "console", size = 0.55 },
+          { id = "repl", size = 0.25 },
+          { id = "console", size = 0.75 },
         },
         size = 0.27,
         position = "bottom",
@@ -81,37 +81,33 @@ local function configure_exts()
     },
   } -- use default
   dap.listeners.after.event_initialized["dapui_config"] = function()
-      print("pula 1")
     dapui.open()
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
-      print("pula 2")
     dapui.close()
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
-      print("print 3")
     dapui.close()
   end
 end
 
 
-print("yolo from init.lua file with dap")
+--print("yolo from init.lua file with dap")
 
 local function configure_debuggers()
-  require("marius.dap.rust").setup()
---  require("marius.dap.go").setup()
+  require("sim-hash.dap.rust").setup()
+--  require("sim-hash.dap.go").setup()
 --  require("config.dap.kotlin").setup()
 --  require("config.dap.javascript").setup()
 --  require("config.dap.typescript").setup()
-print("2 yolo from init.lua file with dap")
+--print("2 yolo from init.lua file with dap")
 end
 
 function M.setup()
   configure() -- Configuration
   configure_exts() -- Extensions
   configure_debuggers() -- Debugger
-  require("marius.dap.keymaps").setup() -- Keymaps
-  print("3 yolo from init.lua file with dap")
+ -- print("3 yolo from init.lua file with dap")
 end
 
 configure_debuggers()

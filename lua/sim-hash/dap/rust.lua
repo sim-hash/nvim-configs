@@ -13,9 +13,6 @@ function M.setup()
         executable = {
             command = codelldb_path,
             args = { "--port", "${port}" },
-
-            -- On windows you may have to uncomment this:
-            -- detached = false,
         },
     }
     dap.configurations.cpp = {
@@ -25,10 +22,15 @@ function M.setup()
             request = "launch",
             program = function()
                 print("Path: ")
-                return vim.fn.input(vim.fn.getcwd() .. "/", "target/debug/guessing_game")
+                return vim.fn.input(vim.fn.getcwd() .. "/", "target/release/lisk-vanity")
             end,
             cwd = "${workspaceFolder}",
             stopOnEntry = false,
+            -- how to pass args
+--            arg = {
+--                "--gpu",
+--                "MAMA"
+--            },
         },
     }
 
