@@ -1,6 +1,26 @@
+-- List of patterns/files to ignore
+local ignore_filetypes_list = {
+  "venv",
+  "target",
+  "__pycache__",
+  "%.xlsx",
+  "%.pdf",
+  "%.odt",
+}
+
+-- Require telescope safely
+local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
--- example if you want to add a comment
+-- Telescope setup
+telescope.setup({
+  defaults = {
+    file_ignore_patterns = ignore_filetypes_list,
+  },
+})
+
+
+
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {desc = "Find files"})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
