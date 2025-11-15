@@ -28,3 +28,6 @@ lsp.log
 
 # Mason installed servers (optional - comment out if you want to track them)
 # mason/
+
+# Keybindings reference (personal documentation)
+KEYBINDINGS.md

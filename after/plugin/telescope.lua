@@ -1,4 +1,3 @@
--- List of patterns/files to ignore
 local ignore_filetypes_list = {
   "venv",
   "target",
@@ -8,17 +7,14 @@ local ignore_filetypes_list = {
   "%.odt",
 }
 
--- Require telescope safely
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
--- Telescope setup
 telescope.setup({
   defaults = {
     file_ignore_patterns = ignore_filetypes_list,
   },
 })
-
 
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {desc = "Find files"})
