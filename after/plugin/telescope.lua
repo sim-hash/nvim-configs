@@ -23,6 +23,9 @@ vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fs', function()
+	builtin.git_status({ initial_mode = "normal" })
+end, {desc = "Git status"})
 
 --require('telescope').setup({
 --  defaults = {
